@@ -56,11 +56,14 @@
           async function sendMessage(option) {
             message = document.getElementById('question').value;
             console.log(message);
+            let formData = new FormData();
             message = message + " [user is " + option + " the topic]";
-            await fetch('http://localhost:8080/question?message=${encodeURIComponent(message)}', {
-              method: 'POST'
+            formData.append('message', message)
+            await fetch('http://localhost:8080/question', {
+              method: 'POST',
+              body: formData
             })
-            .then(response => answer)
+            .then(response => console.log(response.json))
             .then(data=> console.log(data))
             .catch(error => console.error('Error:', error));
           }
