@@ -99,6 +99,11 @@ ul {
     margin: 40px 80px;
 }
 
+.responseContainer {
+  padding: 25px 100px;
+  margin: 40px 80px;
+}
+
 .label {
     font-weight: bold;
     font-size: x-large;
