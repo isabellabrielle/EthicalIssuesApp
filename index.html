@@ -28,16 +28,44 @@
 
 
   <div class="questionContainer">
-    <form>
+    <form onsubmit="return false;">
     <div class="questionText">
       <label for="question">Question:</label>
     </div>  
       <input type="text" id="question" name="question" placeholder="Input Your Ethical Question...">
         <div class="container">
-          <button class="button forButton">For</button>
-          <button class="button neutralButton">Neutral</button>
-          <button class="button againstButton">Against</button>
+          <button class="button forButton" id="for">For</button>
+          <button class="button neutralButton" id="neutral">Neutral</button>
+          <button class="button againstButton" id="against">Against</button>
         </div>
+        <script>
+        console.log("loaded");
+        document.addEventListener('DOMContentLoaded', (event) => {
+          document.getElementById('for').addEventListener('click', function() {
+            console.log("button pressed");
+            sendMessage("for");
+          });
+          document.getElementById('neutral').addEventListener('click', function() {
+            sendMessage("neutral");
+            console.log("button pressed");
+          });
+          document.getElementById('against').addEventListener('click', function() {
+            sendMessage("against");
+            console.log("button pressed");
+          });
+          async function sendMessage(option) {
+            message = document.getElementById('question').value;
+            console.log(message);
+            message = message + " [user is " + option + " the topic]";
+            await fetch('http://localhost:8080/question?message=${encodeURIComponent(message)}', {
+              method: 'POST'
+            })
+            .then(response => answer)
+            .then(data=> console.log(data))
+            .catch(error => console.error('Error:', error));
+          }
+        });
+        </script>
     </form>
   </div>
 
