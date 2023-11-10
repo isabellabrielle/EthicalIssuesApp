@@ -1,0 +1,12 @@
+.center{
+display: table;
+margin-left: auto;
+margin-right: auto;
+list-style-position: inside;
+}
+
+.listContainer {
+    background-color: rgb(220, 220, 220);
+    margin: 10px 220px;
+    padding: 25px 100px;
+}
