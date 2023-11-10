@@ -46,15 +46,18 @@
             //console.log("button pressed");
             response = await sendMessage("for");
             console.log(response);
+            document.getElementById('responseWindow').textContent = response;
           });
           document.getElementById('neutral').addEventListener('click', async function() {
             response = await sendMessage("neutral");
             console.log(response);
+            document.getElementById('responseWindow').textContent = response;
             //console.log("button pressed");
           });
           document.getElementById('against').addEventListener('click', async function() {
-            resopnse = await sendMessage("against");
+            response = await sendMessage("against");
             console.log(response)
+            document.getElementById('responseWindow').textContent = response;
             //console.log("button pressed");
           });
           async function sendMessage(option) {
@@ -82,10 +85,8 @@
     </form>
   </div>
 
-  <div class="responseContainer">
-    <p id="Response">hello</p>
-
-    </div>
+  <div class="responseContainer" id="responseWindow">    
+  </div>
 
 
 
