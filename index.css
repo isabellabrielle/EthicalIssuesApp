@@ -20,6 +20,7 @@ ul {
   
   li a:hover {
     background-color: #111;
+    color: white;
   }
 
 
@@ -119,4 +120,9 @@ ul {
 .center{
     text-align: center;
     list-style-position: inside;
+}
+
+.active {
+  background-color: rgb(189, 189, 189);
+  color: #111; 
 }
