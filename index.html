@@ -41,17 +41,20 @@
         <script>
         console.log("loaded");
         document.addEventListener('DOMContentLoaded', (event) => {
-          document.getElementById('for').addEventListener('click', function() {
-            console.log("button pressed");
-            sendMessage("for");
+          document.getElementById('for').addEventListener('click', async function() {
+            //console.log("button pressed");
+            response = await sendMessage("for");
+            console.log(response);
           });
-          document.getElementById('neutral').addEventListener('click', function() {
-            sendMessage("neutral");
-            console.log("button pressed");
+          document.getElementById('neutral').addEventListener('click', async function() {
+            response = await sendMessage("neutral");
+            console.log(response);
+            //console.log("button pressed");
           });
-          document.getElementById('against').addEventListener('click', function() {
-            sendMessage("against");
-            console.log("button pressed");
+          document.getElementById('against').addEventListener('click', async function() {
+            resopnse = await sendMessage("against");
+            console.log(response)
+            //console.log("button pressed");
           });
           async function sendMessage(option) {
             message = document.getElementById('question').value;
@@ -59,7 +62,7 @@
             let formData = new FormData();
             message = message + " [user is " + option + " the topic]";
             formData.append('message', message)
-            await fetch('http://localhost:8080/question', {
+            return await fetch('http://localhost:8080/question', {
               method: 'POST',
               body: formData
             })
@@ -68,7 +71,7 @@
                 throw new Error('NOT OK');
               }
               return response.json()})
-            .then(data=> console.log(data))
+            .then(data=> {return data.response;})
             .catch(error => console.error('Error:', error));
             
           }
