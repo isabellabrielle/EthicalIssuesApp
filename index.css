@@ -94,6 +94,12 @@ ul {
     gap: 60px; 
 } 
 
+.resetContainer {
+  
+  text-align: center;
+
+}
+
 .questionContainer {
     padding: 25px 100px;
     margin: 40px 80px;
@@ -120,6 +126,8 @@ ul {
     text-align: center;
     font-weight: bolder;
     font-size: x-large;
+    padding: 2px;
+  margin: 4px;
 }
 
 .center{
