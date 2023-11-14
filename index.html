@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+
+
+
+
+  </head>
 
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
 
-
-
-
-    </head>
-    <body>
-    
     <ul>
       <link rel="stylesheet" href="index.css">
       <li><a href="./howToUse.html">How To Use</a></li>
@@ -20,87 +22,97 @@
     </ul>
 
 
-  <body>
-  
-  <div class="title">  
-    <h3>Ethics Answer Generator</h3>
-  </div>
+    <body>
+
+      <div class="title">
+        <h3>Ethics Answer Generator</h3>
+      </div>
 
 
-  <div class="questionContainer">
-    <form onsubmit="return false;">
-    <div class="questionText">
-      <label for="question">Question:</label>
-    </div>  
-    <div class="resetContainer">
-      <button id="reset">Reset</button>
-    </div>
-      <input type="text" id="question" name="question" placeholder="Input Your Ethical Question...">
-        <div class="container">
-          <button class="button forButton" id="for">For</button>
-          <button class="button neutralButton" id="neutral">Neutral</button>
-          <button class="button againstButton" id="against">Against</button>
-        </div>
+      <div class="questionContainer">
+        <form onsubmit="return false;">
+          <div class="questionText">
+            <label for="question">Question:</label>
+          </div>
+          <div class="resetContainer">
+            <button class=resetButton id="reset">Reset</button>
+          </div>
+          <input type="text" id="question" name="question" placeholder="Input Your Ethical Question...">
+          <div class="container">
+            <button class="button forButton" id="for">For</button>
+            <button class="button neutralButton" id="neutral">Neutral</button>
+            <button class="button againstButton" id="against">Against</button>
+          </div>
 
-        <script>
-        console.log("loaded");
-        document.addEventListener('DOMContentLoaded', (event) => {
-          document.getElementById('for').addEventListener('click', async function() {
-            //console.log("button pressed");
-            message = document.getElementById('question').value;
-            const chat = document.getElementById('responseWindow');
-            chat.innerHTML += `<div>${"User: " + message}</div>`;
-            response = await sendMessage("for");
-            console.log(response);
-            chat.innerHTML += `<div>${"System: " + response}</div>`;
-          });
-          document.getElementById('neutral').addEventListener('click', async function() {
-            message = document.getElementById('question').value;
-            const chat = document.getElementById('responseWindow');
-            chat.innerHTML += `<div>${"User: " + message}</div>`;
-            response = await sendMessage("neutral");
-            console.log(response);
-            chat.innerHTML += `<div>${"System: " + response}</div>`;
-            //console.log("button pressed");
-          });
-          document.getElementById('against').addEventListener('click', async function() {
-            message = document.getElementById('question').value;
-            const chat = document.getElementById('responseWindow');
-            chat.innerHTML += `<div>${"User: " + message}</div>`;
-            response = await sendMessage("against");
-            console.log(response)
-            chat.innerHTML += `<div>${"System: " + response}</div>`;
-            //console.log("button pressed");
-          });
-          async function sendMessage(option) {
-            message = document.getElementById('question').value;
-            console.log(message);
-            let formData = new FormData();
-            message = message + " [user is " + option + " the topic]";
-            formData.append('message', message)
-            return await fetch('http://localhost:8080/question', {
-              method: 'POST',
-              body: formData
-            })
-            .then(response => {
-              if(!response.ok){
-                throw new Error('NOT OK');
+          <script>
+            console.log("loaded");
+            // const chat = document.getElementById('responseWindow');
+            document.addEventListener('DOMContentLoaded', (event) => {
+              document.getElementById('reset').addEventListener('click', async function () {
+                const chat = document.getElementById('responseWindow');
+                chat.innerHTML = ``;
+                fetch('http://localhost:8080/reset', {
+                  method: 'POST'
+                });
+              });
+              document.getElementById('for').addEventListener('click', async function () {
+                //console.log("button pressed");
+                const chat = document.getElementById('responseWindow');
+                message = document.getElementById('question').value;
+                chat.innerHTML += `<div>${"User: " + message}</div>`;
+                response = await sendMessage("for");
+                console.log(response);
+                chat.innerHTML += `<div>${"System: " + response}</div>`;
+              });
+              document.getElementById('neutral').addEventListener('click', async function () {
+                const chat = document.getElementById('responseWindow');
+                message = document.getElementById('question').value;
+                chat.innerHTML += `<div>${"User: " + message}</div>`;
+                response = await sendMessage("neutral");
+                console.log(response);
+                chat.innerHTML += `<div>${"System: " + response}</div>`;
+                //console.log("button pressed");
+              });
+              document.getElementById('against').addEventListener('click', async function () {
+                const chat = document.getElementById('responseWindow');
+                message = document.getElementById('question').value;
+                chat.innerHTML += `<div>${"User: " + message}</div>`;
+                response = await sendMessage("against");
+                console.log(response)
+                chat.innerHTML += `<div>${"System: " + response}</div>`;
+                //console.log("button pressed");
+              });
+              async function sendMessage(option) {
+                message = document.getElementById('question').value;
+                console.log(message);
+                let formData = new FormData();
+                message = message + " [user is " + option + " the topic]";
+                formData.append('message', message)
+                return await fetch('http://localhost:8080/question', {
+                  method: 'POST',
+                  body: formData
+                })
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error('NOT OK');
+                    }
+                    return response.json()
+                  })
+                  .then(data => {return data.response;})
+                  .catch(error => console.error('Error:', error));
               }
-              return response.json()})
-            .then(data=> {return data.response;})
-            .catch(error => console.error('Error:', error));
-          }
-        });
-        </script>
-        
+            });
+          </script>
 
-    </form>
-  </div>
 
-  <div class="responseContainer" id="responseWindow">    
-  </div>
+        </form>
+      </div>
+
+      <div class="responseContainer" id="responseWindow">
+      </div>
 
 
 
-  </body>
+    </body>
+
 </html>

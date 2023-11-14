@@ -88,7 +88,14 @@ ul {
     background-color: #d80404;
 }
 
+.resetButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .container { 
+    position: relative;
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 60px; 
@@ -101,6 +108,7 @@ ul {
 }
 
 .questionContainer {
+    position: relative;
     padding: 25px 100px;
     margin: 40px 80px;
 }
