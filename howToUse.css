@@ -10,3 +10,7 @@ list-style-position: inside;
     margin: 10px 220px;
     padding: 25px 100px;
 }
+
+.explanation {
+    background-color:  rgb(220, 220, 220);
+}

@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Page Title</title>
+  <link rel="stylesheet" href="index.css">
+</head>
 
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    </head>
-    <body>
-    
-        <ul>
-            <link rel="stylesheet" href="index.css">
-            <li><a class="active" href="./howToUse.html">How To Use</a></li>
-            <li><a href="./aboutUs.html">About Us</a></li>
-            <li><a href="./index.html">Home</a></li>
-          </ul>
+  <ul>
+    <li><a class="active" href="./howToUse.html">How To Use</a></li>
+    <li><a href="./aboutUs.html">About Us</a></li>
+    <li><a href="./index.html">Home</a></li>
+  </ul>
 
+  <div class="title">
+    <h3>How To Use</h3>
+  </div>
 
+  <link rel="stylesheet" href="howToUse.css">
 
-          <div class="title">  
-            <h3>How To Use</h3>
-          </div>
+  <div class="listContainer">
+    <p>1. On the home page, select "Input your Ethical Question..." and enter any question you want to ask.</p>
+    <p>2. After typing in your question, select the "For," "Neutral," or "Against" button to submit your request.</p>
+    <ul class="explanation">
+      <li>
+        <p>Selecting the "For" button will produce an affirmative response.</p>
+      </li>
+      <li>
+        <p>Selecting the "Neutral" button will produce an neutral response.</p>
+      </li>
+      <li>
+        <p>Selecting the "Against" button will produce a negative response.</p>
+      </li>
+    </ul>
+    <p>3. After waiting a moment, you will see the response to your question!</p>
+    <p>4. When you are ready to enter a new question, click the "Reset" button.</p>
+  </div>
 
-          <link rel="stylesheet" href="howToUse.css">
-          <div class="listContainer">
-            <p>1. On the home page, select "Input you Ethical Question..." and enter any question you want to ask.</p>
-            <p>2. After typing in your question, select "For," "Neutral," or "Against" depending on what type of response you would like to see.</p>
-            <p>3. You will then be routed to the response page, where you will see the response to your question!</p>
-          </div>  
-          
+</body>
 
-
-
-
-
-
-
-
-
-  </body>
 </html>
